@@ -7,335 +7,262 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0f1e;
-    --surface: #111827;
-    --border: #45261e: /*1e2d45;*/
-    --accent: #ff8357; /* 00d4aa;*/
-    --accent2: #a50d00; /*3b82f6;*/
-    --text: #f5ebe8; /*e8edf5;*/
-    --muted: #94736b: /*6b7a94;*/
+    --bg: #0a0608;
+    --surface: #130a0b;
+    --border: #2d1518;
+    --accent: #F48941;
+    --accent2: #A50D00;
+    --text: #f0e8e6;
+    --muted: #8a6f6a;
     --gold: #f5c842;
-    --green: #00d4aa;
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  * { margin:0; padding:0; box-sizing:border-box; }
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    overflow-x: hidden;
+    font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text);
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    padding:24px; overflow-x:hidden;
   }
-
   body::before {
-    content: '';
-    position: fixed;
-    top: -40%; left: -20%;
-    width: 80vw; height: 80vw;
-    background: radial-gradient(circle, rgba(0,212,170,0.05) 0%, transparent 65%);
-    pointer-events: none;
+    content:''; position:fixed; top:-40%; left:-20%; width:80vw; height:80vw;
+    background:radial-gradient(circle,rgba(244,137,65,0.06) 0%,transparent 65%); pointer-events:none;
   }
   body::after {
-    content: '';
-    position: fixed;
-    bottom: -30%; right: -10%;
-    width: 60vw; height: 60vw;
-    background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 65%);
-    pointer-events: none;
+    content:''; position:fixed; bottom:-30%; right:-10%; width:60vw; height:60vw;
+    background:radial-gradient(circle,rgba(165,13,0,0.07) 0%,transparent 65%); pointer-events:none;
   }
-
-  .shell {
-    width: 100%;
-    max-width: 720px;
-    position: relative;
-    z-index: 1;
-  }
+  .shell { width:100%; max-width:720px; position:relative; z-index:1; }
 
   /* HEADER */
-  .header {
-    text-align: center;
-    margin-bottom: 48px;
-    animation: fadeUp 0.7s ease both;
-  }
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 14px;
-    font-weight: 500;
-  }
-  .header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 5vw, 44px);
-    font-weight: 900;
-    line-height: 1.1;
-    color: #fff;
-    margin-bottom: 16px;
-  }
-  .header h1 span { color: var(--accent); }
-  .header p {
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.65;
-    max-width: 480px;
-    margin: 0 auto;
-  }
+  .header { text-align:center; margin-bottom:48px; animation:fadeUp .7s ease both; }
+  .hero-img-wrap { display:flex; justify-content:center; margin-bottom:-8px; }
+  .hero-img-wrap img { width:210px; height:210px; object-fit:contain; mix-blend-mode:screen; filter:saturate(1.1) brightness(1.05); pointer-events:none; }
+  .eyebrow { font-size:11px; letter-spacing:.25em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; font-weight:500; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:clamp(28px,5vw,44px); font-weight:900; line-height:1.1; color:#fff; margin-bottom:16px; }
+  .header h1 span { color:var(--accent); }
+  .header p { color:var(--muted); font-size:15px; line-height:1.65; max-width:480px; margin:0 auto; }
 
   /* PROGRESS */
-  .progress-wrap {
-    margin-bottom: 36px;
-    animation: fadeUp 0.7s 0.1s ease both;
-  }
-  .progress-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 8px;
-    letter-spacing: 0.05em;
-  }
-  .progress-bar {
-    height: 3px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-radius: 2px;
-    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
-  }
+  .progress-wrap { margin-bottom:36px; animation:fadeUp .7s .1s ease both; }
+  .progress-meta { display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-bottom:8px; }
+  .progress-bar { height:3px; background:var(--border); border-radius:2px; overflow:hidden; }
+  .progress-fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); border-radius:2px; transition:width .5s cubic-bezier(.4,0,.2,1); }
 
   /* CARD */
   .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 40px;
-    animation: fadeUp 0.6s 0.15s ease both;
-    position: relative;
-    overflow: hidden;
+    background:var(--surface); border:1px solid var(--border); border-radius:20px;
+    padding:40px; animation:fadeUp .6s .15s ease both; position:relative; overflow:hidden;
   }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    opacity: 0.6;
-  }
+  .card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--accent),var(--accent2)); opacity:.7; }
 
-  /* ID FIELDS */
-  .id-title {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-    font-weight: 500;
+  /* ID */
+  .id-title { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:24px; font-weight:500; }
+  .fields-col { display:flex; flex-direction:column; gap:18px; margin-bottom:32px; }
+  label.field { display:flex; flex-direction:column; gap:7px; }
+  label.field span { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:500; }
+  label.field select {
+    background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:10px;
+    padding:12px 14px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--text);
+    transition:border-color .2s; outline:none;
   }
-  .fields-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    margin-bottom: 32px;
-  }
-  @media(max-width:520px){ .fields-row { grid-template-columns: 1fr; } }
-  label.field { display: flex; flex-direction: column; gap: 7px; }
-  label.field span {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 500;
-  }
-  label.field input, label.field select {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    transition: border-color .2s;
-    outline: none;
-  }
-  label.field input::placeholder { color: var(--muted); }
-  label.field select option { background: var(--surface); color: var(--text); }
-  label.field input:focus, label.field select:focus { border-color: var(--accent); }
+  label.field select option { background:var(--surface); color:var(--text); }
+  label.field select:focus { border-color:var(--accent); }
 
   /* QUESTION */
-  .q-number {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-weight: 500;
-  }
-  .q-text {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(18px, 3vw, 24px);
-    font-weight: 700;
-    line-height: 1.35;
-    color: #fff;
-    margin-bottom: 32px;
-  }
+  .q-number { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; font-weight:500; }
+  .q-text { font-family:'Playfair Display',serif; font-size:clamp(17px,3vw,22px); font-weight:700; line-height:1.35; color:#fff; margin-bottom:8px; }
+  .q-sub { font-size:12px; color:var(--muted); margin-bottom:24px; line-height:1.5; }
 
-  /* OPTIONS */
-  .options { display: flex; flex-direction: column; gap: 12px; }
+  /* SINGLE OPTIONS */
+  .options { display:flex; flex-direction:column; gap:10px; }
   .option {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 18px 20px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.22s ease;
-    background: transparent;
-    position: relative;
-    overflow: hidden;
+    display:flex; align-items:flex-start; gap:14px; padding:16px 18px;
+    border:1px solid var(--border); border-radius:12px; cursor:pointer;
+    transition:all .2s; background:transparent; position:relative; overflow:hidden;
   }
-  .option::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, rgba(0,212,170,0.06), rgba(59,130,246,0.06));
-    opacity: 0;
-    transition: opacity 0.22s;
-  }
-  .option:hover { border-color: rgba(255,131,87,0.4); } /*(0,212,170,0.4); }*/
-  .option:hover::before { opacity: 1; }
-  .option.selected { border-color: var(--accent); background: rgba(255,131,87,0.07); } /*rgba(0,212,170,0.07); }*/
-  .option.selected::before { opacity: 1; }
+  .option::before { content:''; position:absolute; inset:0; background:linear-gradient(120deg,rgba(244,137,65,.07),rgba(165,13,0,.07)); opacity:0; transition:opacity .2s; }
+  .option:hover { border-color:rgba(244,137,65,.5); }
+  .option:hover::before { opacity:1; }
+  .option.selected { border-color:var(--accent); background:rgba(244,137,65,.08); }
+  .option.selected::before { opacity:1; }
   .opt-letter {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    border: 1.5px solid var(--muted);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
-    color: var(--muted);
-    flex-shrink: 0; margin-top: 1px;
-    transition: all 0.2s;
-    position: relative; z-index: 1;
+    width:26px; height:26px; border-radius:50%; border:1.5px solid var(--muted);
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:600; color:var(--muted);
+    flex-shrink:0; margin-top:1px; transition:all .2s; position:relative; z-index:1;
   }
-  .option.selected .opt-letter { border-color: var(--accent); background: var(--accent); color: #0a0f1e; }
-  .opt-text { font-size: 14px; line-height: 1.55; color: var(--text); position: relative; z-index: 1; }
+  .option.selected .opt-letter { border-color:var(--accent); background:var(--accent); color:#0a0608; }
+  .opt-text { font-size:13.5px; line-height:1.55; color:var(--text); position:relative; z-index:1; }
+
+  /* MULTI OPTIONS */
+  .multi-options { display:flex; flex-direction:column; gap:10px; }
+  .multi-option {
+    display:flex; align-items:flex-start; gap:14px; padding:14px 18px;
+    border:1px solid var(--border); border-radius:12px; cursor:pointer;
+    transition:all .2s; background:transparent; position:relative; overflow:hidden;
+  }
+  .multi-option::before { content:''; position:absolute; inset:0; background:linear-gradient(120deg,rgba(244,137,65,.07),rgba(165,13,0,.07)); opacity:0; transition:opacity .2s; }
+  .multi-option:hover { border-color:rgba(244,137,65,.4); }
+  .multi-option:hover::before { opacity:1; }
+  .multi-option.selected { border-color:var(--accent); background:rgba(244,137,65,.08); }
+  .multi-option.selected::before { opacity:1; }
+  .opt-check {
+    width:20px; height:20px; border-radius:4px; border:1.5px solid var(--muted);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-top:2px; transition:all .2s; position:relative; z-index:1;
+  }
+  .multi-option.selected .opt-check { border-color:var(--accent); background:var(--accent); }
+  .opt-check-inner { font-size:12px; color:#0a0608; opacity:0; transition:opacity .2s; font-weight:700; }
+  .multi-option.selected .opt-check-inner { opacity:1; }
+
+  /* PRIORITY TOPICS */
+  .priority-options { display:flex; flex-direction:column; gap:10px; }
+  .priority-option {
+    display:flex; align-items:center; gap:14px; padding:16px 20px;
+    border:1px solid var(--border); border-radius:12px; cursor:pointer;
+    transition:all .22s; background:transparent; position:relative; overflow:hidden; user-select:none;
+  }
+  .priority-option::before { content:''; position:absolute; inset:0; background:linear-gradient(120deg,rgba(244,137,65,.07),rgba(165,13,0,.07)); opacity:0; transition:opacity .22s; }
+  .priority-option:hover { border-color:rgba(244,137,65,.4); }
+  .priority-option:hover::before { opacity:1; }
+  .priority-option.rank-1 { border-color:var(--accent); background:rgba(244,137,65,.10); }
+  .priority-option.rank-2 { border-color:var(--accent2); background:rgba(165,13,0,.10); }
+  .priority-option.rank-3 { border-color:#7a3000; background:rgba(120,48,0,.10); }
+  .priority-option.rank-1::before,.priority-option.rank-2::before,.priority-option.rank-3::before { opacity:1; }
+  .rank-badge {
+    width:28px; height:28px; border-radius:50%; border:1.5px solid var(--muted);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700; color:var(--muted);
+    flex-shrink:0; transition:all .2s; position:relative; z-index:1;
+    font-family:'Playfair Display',serif;
+  }
+  .priority-option.rank-1 .rank-badge { border-color:var(--accent); background:var(--accent); color:#0a0608; }
+  .priority-option.rank-2 .rank-badge { border-color:var(--accent2); background:var(--accent2); color:#fff; }
+  .priority-option.rank-3 .rank-badge { border-color:#c05010; background:#7a3000; color:#ffd0a0; }
+  .priority-text { font-size:14px; line-height:1.5; color:var(--text); position:relative; z-index:1; flex:1; }
+  .rank-legend { display:flex; gap:16px; margin-bottom:18px; flex-wrap:wrap; }
+  .rank-legend-item { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--muted); }
+  .rank-dot { width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; font-family:'Playfair Display',serif; }
+  .rank-dot.r1 { background:var(--accent); color:#0a0608; }
+  .rank-dot.r2 { background:var(--accent2); color:#fff; }
+  .rank-dot.r3 { background:#7a3000; color:#ffd0a0; }
+
+  /* RETOS TEXTAREA */
+  .retos-group { display:flex; flex-direction:column; gap:20px; margin-bottom:28px; }
+  .reto-block { display:flex; flex-direction:column; gap:8px; }
+  .reto-label {
+    display:flex; align-items:center; gap:10px;
+    font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); font-weight:500;
+  }
+  .reto-horizon {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:22px; height:22px; border-radius:50%; font-size:10px; font-weight:700;
+    font-family:'Playfair Display',serif; flex-shrink:0;
+  }
+  .reto-horizon.h1 { background:var(--accent); color:#0a0608; }
+  .reto-horizon.h2 { background:var(--accent2); color:#fff; }
+  .reto-horizon.h3 { background:#7a3000; color:#ffd0a0; }
+  .reto-horizon-label { color:var(--text); font-size:13px; font-weight:500; letter-spacing:.05em; }
+  .reto-horizon-period { color:var(--muted); font-size:11px; font-weight:400; text-transform:none; letter-spacing:0; margin-left:4px; }
+  .reto-textarea {
+    background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:12px;
+    padding:14px 16px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--text);
+    line-height:1.6; resize:vertical; min-height:90px; outline:none;
+    transition:border-color .2s, background .2s; width:100%;
+  }
+  .reto-textarea::placeholder { color:var(--muted); opacity:.7; }
+  .reto-textarea:focus { border-color:var(--accent); background:rgba(244,137,65,.04); }
+
+  /* REFLEXION OPCIONAL */
+  .reflexion-block {
+    margin-top:10px; padding:22px; border-radius:14px;
+    background:rgba(255,255,255,.02); border:1px solid var(--border);
+    position:relative;
+  }
+  .reflexion-block::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg,rgba(244,137,65,.3),rgba(165,13,0,.3)); border-radius:14px 14px 0 0;
+  }
+  .reflexion-header { display:flex; align-items:flex-start; gap:10px; margin-bottom:6px; }
+  .reflexion-optional-badge {
+    font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+    border:1px solid var(--border); padding:2px 9px; border-radius:100px; font-weight:500;
+    flex-shrink:0; margin-top:2px;
+  }
+  .reflexion-q {
+    font-family:'Playfair Display',serif; font-size:clamp(15px,2.5vw,18px); font-weight:700;
+    color:#fff; line-height:1.35; margin-bottom:6px;
+  }
+  .reflexion-hint { font-size:12px; color:var(--muted); margin-bottom:14px; line-height:1.5; }
+  .reflexion-textarea {
+    background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:12px;
+    padding:14px 16px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--text);
+    line-height:1.6; resize:vertical; min-height:100px; outline:none;
+    transition:border-color .2s, background .2s; width:100%;
+  }
+  .reflexion-textarea::placeholder { color:var(--muted); opacity:.6; font-style:italic; }
+  .reflexion-textarea:focus { border-color:rgba(244,137,65,.5); background:rgba(244,137,65,.03); }
+
+  /* DIVIDER */
+  .section-divider { height:1px; background:var(--border); margin:26px 0; }
 
   /* BUTTONS */
-  .btn-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 32px;
-  }
-  .btn {
-    padding: 13px 32px;
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 600;
-    cursor: pointer; letter-spacing: 0.03em;
-    transition: all 0.2s; border: none;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent), #00b38f);
-    color: #0a0f1e;
-    box-shadow: 0 4px 24px rgba(0,212,170,0.25);
-  }
-  .btn-primary:disabled { opacity: 0.3; cursor: default; box-shadow: none; }
-  .btn-primary:not(:disabled):hover { transform: translateY(-1px); box-shadow: 0 6px 30px rgba(0,212,170,0.35); }
-  .btn-ghost {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-  }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-row { display:flex; justify-content:space-between; align-items:center; margin-top:28px; }
+  .btn { padding:12px 28px; border-radius:10px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; letter-spacing:.03em; transition:all .2s; border:none; }
+  .btn-primary { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; box-shadow:0 4px 24px rgba(244,137,65,.25); }
+  .btn-primary:disabled { opacity:.3; cursor:default; box-shadow:none; }
+  .btn-primary:not(:disabled):hover { transform:translateY(-1px); box-shadow:0 6px 30px rgba(244,137,65,.35); }
+  .btn-ghost { background:transparent; border:1px solid var(--border); color:var(--muted); }
+  .btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
 
   /* RESULT */
-  #result-screen { display: none; animation: fadeUp 0.7s ease both; }
-  .result-badge {
-    display: inline-block;
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid rgba(0,212,170,0.3);
-    padding: 5px 14px; border-radius: 100px;
-    margin-bottom: 20px; font-weight: 500;
-  }
-  .result-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 4vw, 38px); font-weight: 900;
-    color: #fff; margin-bottom: 8px; line-height: 1.15;
-  }
-  .result-subtitle {
-    font-size: 13px; color: var(--accent);
-    font-style: italic; margin-bottom: 24px; font-weight: 300;
-  }
-  .result-desc {
-    font-size: 15px; line-height: 1.7;
-    color: #c9b7b0 /*#b0bac9*/; margin-bottom: 28px;
-  }
-  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-  .pill { font-size: 12px; padding: 5px 14px; border-radius: 100px; font-weight: 500; }
-  .pill.green { background: rgba(0,212,170,0.12); color: var(--green); border: 1px solid rgba(0,212,170,0.25); }
-  .pill.blue  { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.25); }
-  .pill.yellow{ background: rgba(245,200,66,0.12); color: var(--gold); border: 1px solid rgba(245,200,66,0.25); }
+  #result-screen { display:none; animation:fadeUp .7s ease both; }
+  .result-badge { display:inline-block; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); border:1px solid rgba(244,137,65,.35); padding:5px 14px; border-radius:100px; margin-bottom:20px; font-weight:500; }
+  .result-title { font-family:'Playfair Display',serif; font-size:clamp(24px,4vw,36px); font-weight:900; color:#fff; margin-bottom:8px; line-height:1.15; }
+  .result-subtitle { font-size:13px; color:var(--accent); font-style:italic; margin-bottom:22px; font-weight:300; }
+  .result-desc { font-size:15px; line-height:1.7; color:#c8ada8; margin-bottom:26px; }
+  .pills { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px; }
+  .pill { font-size:12px; padding:5px 14px; border-radius:100px; font-weight:500; }
+  .pill.orange { background:rgba(244,137,65,.12); color:var(--accent); border:1px solid rgba(244,137,65,.25); }
+  .pill.red    { background:rgba(165,13,0,.15); color:#ff6b5b; border:1px solid rgba(165,13,0,.3); }
+  .pill.warm   { background:rgba(245,200,66,.10); color:var(--gold); border:1px solid rgba(245,200,66,.2); }
+  .dims-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:26px; }
+  @media(max-width:480px){ .dims-row { grid-template-columns:repeat(2,1fr); } }
+  .dim-box { background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:10px; padding:14px; text-align:center; }
+  .dim-label { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:6px; }
+  .dim-val { font-size:19px; font-weight:700; font-family:'Playfair Display',serif; }
+  .dim-val.high { color:var(--accent); }
+  .dim-val.mid  { color:#ff8c6b; }
+  .dim-val.low  { color:#f87171; }
+  .gap-block { background:rgba(244,137,65,.05); border:1px solid rgba(244,137,65,.2); border-radius:14px; padding:22px; margin-bottom:26px; }
+  .gap-block h3 { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; font-weight:500; }
+  .gap-row { display:grid; grid-template-columns:1fr 40px 1fr; align-items:center; gap:8px; }
+  .gap-cell { background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .gap-cell-label { font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  .gap-cell-val { font-size:13px; color:var(--text); font-weight:500; line-height:1.3; }
+  .gap-arrow { text-align:center; font-size:20px; color:var(--accent); }
+  .gap-desc { margin-top:12px; font-size:12px; color:var(--muted); line-height:1.6; font-style:italic; }
+  .priorities-result h3 { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; font-weight:500; }
+  .priority-list { display:flex; flex-direction:column; gap:10px; }
+  .priority-item { display:flex; align-items:center; gap:12px; font-size:13.5px; color:#c8ada8; }
+  .priority-item .p-num { width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0; font-family:'Playfair Display',serif; }
+  .priority-item:nth-child(1) .p-num { background:var(--accent); color:#0a0608; }
+  .priority-item:nth-child(2) .p-num { background:var(--accent2); color:#fff; }
+  .priority-item:nth-child(3) .p-num { background:#7a3000; color:#ffd0a0; }
 
-  .dims-row {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 28px;
-  }
-  @media(max-width:480px){ .dims-row { grid-template-columns: repeat(2,1fr); } }
-  .dim-box {
-    background: rgba(255,255,255,0.025);
-    border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center;
-  }
-  .dim-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 6px; }
-  .dim-val { font-size: 20px; font-weight: 700; font-family: 'Playfair Display', serif; }
-  .dim-val.high { color: var(--green); }
-  .dim-val.mid  { color: #93c5fd; }
-  .dim-val.low  { color: #f87171; }
-
-  .next-steps {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 28px;
-  }
-  .next-steps h3 {
-    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 14px; font-weight: 500;
-  }
-  .next-steps ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .next-steps li {
-    font-size: 13.5px; color: #b8a49a/*9aa5b8*/;
-    padding-left: 18px; position: relative; line-height: 1.5;
-  }
-  .next-steps li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 12px; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @media(max-width:500px){ .card { padding: 28px 20px; } }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+  @media(max-width:500px){ .card{padding:28px 18px} }
 </style>
 </head>
 <body>
 <div class="shell">
 
-  <!-- SURVEY SCREEN -->
   <div id="survey-screen">
-
     <div class="header" id="main-header">
+      <div class="hero-img-wrap"><img src="hero.png" alt=""></div>
       <div class="eyebrow">Diagnóstico Estratégico</div>
       <h1>¿Qué arquetipo de<br><span>innovación</span> es tu hospital?</h1>
-      <p>5 preguntas · 3 minutos · Resultado inmediato</p>
+      <p>Encuesta de diagnóstico · Resultado inmediato</p>
     </div>
-
     <div class="progress-wrap" id="progress-wrap">
       <div class="progress-meta">
         <span id="prog-label">Identificación</span>
@@ -343,49 +270,37 @@
       </div>
       <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
     </div>
-
-    <!-- IDENTIFICATION -->
     <div class="card" id="id-card">
       <div class="id-title">Antes de comenzar</div>
-      <div class="fields-row">
-        <label class="field">
-          <span>Nombre</span>
-          <input type="text" id="f-nombre" placeholder="Tu nombre">
-        </label>
+      <div class="fields-col">
         <label class="field">
           <span>Hospital / Centro</span>
-          <input type="text" id="f-hospital" placeholder="Nombre del centro">
-        </label>
-        <label class="field">
-          <span>Cargo</span>
-          <input type="text" id="f-cargo" placeholder="CIO, Director de Innovación...">
-        </label>
-        <label class="field">
-          <span>Comunidad Autónoma</span>
-          <select id="f-ccaa">
-            <option value="">Selecciona...</option>
-            <option>Andalucía</option><option>Aragón</option><option>Asturias</option>
-            <option>Baleares</option><option>Canarias</option><option>Cantabria</option>
-            <option>Castilla-La Mancha</option><option>Castilla y León</option>
-            <option>Cataluña</option><option>Ceuta</option><option>Extremadura</option>
-            <option>Galicia</option><option>La Rioja</option><option>Madrid</option>
-            <option>Melilla</option><option>Murcia</option><option>Navarra</option>
-            <option>País Vasco</option><option>Valencia</option>
+          <select id="f-hospital">
+            <option value="">Selecciona tu hospital...</option>
+            <option>Hospital Univ. Virgen Macarena</option>
+            <option>Hospital Univ. Vall d'Hebron</option>
+            <option>Hospital Univ. Virgen del Rocío</option>
+            <option>Hospital Univ. y Politécnico La Fe</option>
+            <option>Hospital Univ. La Paz</option>
+            <option>Hospital Univ. De Santiago de Compostela</option>
+            <option>Hospital Sant Joan de Deu</option>
+            <option>Hospital Clínic de Barcelona</option>
+            <option>Hospital General Univ. Dr. Balmis</option>
+            <option>Hospital Clínico San Carlos</option>
+            <option>Hospital Son Espases</option>
+            <option>Clínica Universidad de Navarra</option>
+            <option>Hospital de la Santa Creu i Sant Pau</option>
+            <option>Hospital Univ. La Princesa</option>
+            <option>Hospital Universitario 12 de Octubre</option>
+            <option>Hospital Virgen del Rocío</option>
           </select>
         </label>
       </div>
-      <div class="btn-row">
-        <div></div>
-        <button class="btn btn-primary" onclick="startSurvey()">Comenzar →</button>
-      </div>
+      <div class="btn-row"><div></div><button class="btn btn-primary" onclick="startSurvey()">Comenzar →</button></div>
     </div>
-
-    <!-- QUESTIONS (rendered by JS) -->
     <div id="q-area"></div>
-
   </div>
 
-  <!-- RESULT SCREEN -->
   <div id="result-screen">
     <div class="card">
       <div class="result-badge">Tu arquetipo de innovación</div>
@@ -394,228 +309,662 @@
       <div class="result-desc" id="res-desc"></div>
       <div class="pills" id="res-pills"></div>
       <div class="dims-row" id="res-dims"></div>
-      <div class="next-steps">
-        <h3>Próximos pasos recomendados</h3>
-        <ul id="res-steps"></ul>
+      <div id="res-gap" style="display:none;background:rgba(244,137,65,0.05);border:1px solid rgba(244,137,65,0.2);border-radius:14px;padding:22px;margin-bottom:22px;">
+        <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500;">Gap de madurez estratégica</div>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-bottom:14px;">
+          <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;">Hoy</div>
+            <div id="gap-hoy" style="font-size:15px;font-weight:600;color:var(--text);font-family:'Playfair Display',serif;"></div>
+          </div>
+          <div style="color:var(--accent);font-size:20px;">→</div>
+          <div style="background:rgba(244,137,65,.08);border:1px solid rgba(244,137,65,.3);border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px;">En 3 años</div>
+            <div id="gap-futuro" style="font-size:15px;font-weight:600;color:var(--accent);font-family:'Playfair Display',serif;"></div>
+          </div>
+        </div>
+        <div id="gap-desc" style="font-size:13px;color:#c8ada8;line-height:1.6;"></div>
+      </div>
+      <div id="res-secondary" style="display:none;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:22px;">
+        <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:500;">También con rasgos de</div>
+        <div id="res-secondary-name" style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px;"></div>
+        <div id="res-secondary-desc" style="font-size:13px;color:var(--muted);line-height:1.6;"></div>
       </div>
       <button class="btn btn-ghost" onclick="resetSurvey()">← Volver a empezar</button>
     </div>
   </div>
 
 </div>
-
 <script>
-const QUESTIONS = [
-  {
-    text: "¿Cómo está estructurada la función de innovación en tu hospital?",
-    options: [
-      { text: "Tenemos una Dirección de Innovación (CIO) con equipo y presupuesto propios.", scores: [3,2,0,1,0] },
-      { text: "La innovación recae en clínicos o equipos motivados, sin estructura formal.", scores: [0,0,3,0,1] },
-      { text: "Existe un área transversal de innovación conectada con el ecosistema externo.", scores: [1,3,0,1,0] },
-      { text: "No existe una función de innovación definida como tal.", scores: [0,0,0,0,4] },
-    ]
-  },
-  {
-    text: "¿Cómo se originan habitualmente las iniciativas innovadoras en tu hospital?",
-    options: [
-      { text: "Desde dentro: los profesionales detectan una necesidad y la desarrollamos internamente.", scores: [4,1,1,0,0] },
-      { text: "Desde fuera: startups y empresas nos proponen soluciones que evaluamos y pilotamos.", scores: [0,3,0,2,1] },
-      { text: "Por proyectos puntuales ligados a convocatorias, congresos o colaboraciones concretas.", scores: [0,0,4,0,1] },
-      { text: "La innovación llega principalmente por presión regulatoria o por imitación de otros centros.", scores: [0,0,0,0,5] },
-    ]
-  },
-  {
-    text: "¿Cuál es vuestra relación con el ecosistema de innovación en salud (startups, universidades, fondos…)?",
-    options: [
-      { text: "Somos un nodo activo: participamos en aceleradoras, eventos y alianzas de forma sistemática.", scores: [0,4,0,2,0] },
-      { text: "Colaboramos de forma selectiva, priorizando proyectos que controlamos o lideramos nosotros.", scores: [4,1,0,0,0] },
-      { text: "Nuestra arquitectura tecnológica está abierta: cualquier solución puede integrarse con facilidad.", scores: [0,1,0,4,0] },
-      { text: "La relación es puntual o casi inexistente.", scores: [0,0,2,0,3] },
-    ]
-  },
-  {
-    text: "Cuando una iniciativa innovadora no funciona como se esperaba, ¿qué ocurre en tu organización?",
-    options: [
-      { text: "Se analiza en detalle y se aprende, pero generamos fricción interna al asumir el fracaso.", scores: [3,1,0,0,1] },
-      { text: "Es parte del proceso: fallamos rápido, aprendemos y pivotamos sin drama.", scores: [0,3,1,3,0] },
-      { text: "Suele abandonarse discretamente; hay poca cultura de documentar o aprender del fracaso.", scores: [0,0,3,0,2] },
-      { text: "Prácticamente no experimentamos, así que rara vez afrontamos este escenario.", scores: [0,0,0,0,4] },
-    ]
-  },
-  {
-    text: "¿Cómo describirías mejor el rol que aspira a tener tu hospital en el futuro de la innovación sanitaria?",
-    options: [
-      { text: "Ser referente y generar conocimiento propio que otros adopten.", scores: [4,1,0,0,0] },
-      { text: "Actuar como polo de atracción de talento, startups y capital para el sector.", scores: [0,4,0,1,0] },
-      { text: "Convertir la tecnología en parte del ADN operativo del hospital, sin distinguir innovación de gestión.", scores: [0,1,0,4,0] },
-      { text: "Mejorar continuamente a partir de lo que hacemos bien, con la innovación al servicio de los clínicos.", scores: [1,0,3,1,0] },
-    ]
-  }
-];
-
+// ─── ARCHETYPES ───────────────────────────────────────────────────────────
 const ARCHETYPES = [
   {
-    name: "El Hospital Fortaleza",
-    tagline: '"Innovamos solos, desde dentro"',
-    desc: "Tu hospital ha apostado por internalizar la innovación como capacidad propia. Tienes estructura, mandato y visión, y prefieres controlar el proceso antes que depender de actores externos. Generas innovaciones sólidas e incrementales, con rigor metodológico y alta identidad institucional.",
-    tags: [{ label:"CIO propio",type:"green"},{label:"Alta autonomía",type:"green"},{label:"Innovación incremental",type:"blue"},{label:"Control del proceso",type:"blue"}],
-    dims: [{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Media",cls:"mid"},{label:"Velocidad",value:"Media",cls:"mid"}],
-    steps: ["Abre canales selectivos con startups para acelerar la captación de ideas externas.","Diseña un proceso de fast-fail para validar hipótesis sin comprometer la calidad institucional.","Considera participar como socio ancla en una aceleradora sectorial para ampliar el radar de innovación."]
+    name:"El Hospital Laboratorio", tagline:'"Innovamos principalmente desde dentro"',
+    desc:"Tu hospital ha apostado por internalizar la innovación como capacidad propia. Tienes estructura, mandato y visión, y prefieres controlar el proceso antes que depender de actores externos. Generas innovaciones sólidas e incrementales, con rigor metodológico y alta identidad institucional.",
+    tags:[{label:"Dirección propia",type:"orange"},{label:"Alta autonomía",type:"orange"},{label:"Innovación incremental",type:"red"},{label:"Control del proceso",type:"red"}],
+    dims:[{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Medio",cls:"mid"},{label:"Velocidad",value:"Media",cls:"mid"}]
   },
   {
-    name: "El Hospital Hub",
-    tagline: '"Somos el centro del ecosistema"',
-    desc: "Tu hospital actúa como nodo estratégico de un ecosistema de innovación en salud. Atraes, validas y escalas soluciones de terceros, y tu nombre es sinónimo de credibilidad para startups e inversores. El CIO es un orquestador, no solo un gestor interno.",
-    tags: [{label:"Ecosistema activo",type:"green"},{label:"Aceleradora propia",type:"green"},{label:"Innovación disruptiva",type:"blue"},{label:"Alto volumen de iniciativas",type:"yellow"}],
-    dims: [{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Muy alta",cls:"high"},{label:"Velocidad",value:"Alta",cls:"high"}],
-    steps: ["Formaliza criterios de selección y due diligence para gestionar el volumen de iniciativas sin saturarte.","Construye métricas de impacto clínico de las soluciones validadas para defender el ROI del modelo Hub.","Explora la creación de un fondo de inversión hospitalario para capturar valor a largo plazo."]
+    name:"El Hospital Hub", tagline:'"Somos el centro del ecosistema"',
+    desc:"Tu hospital actúa como nodo estratégico de un ecosistema de innovación en salud. Atraes, validas y escalas soluciones de terceros, y tu nombre es sinónimo de credibilidad para startups e inversores. El director de innovación es un orquestador, no solo un gestor interno.",
+    tags:[{label:"Ecosistema activo",type:"orange"},{label:"Co-creación",type:"orange"},{label:"Innovación disruptiva",type:"red"},{label:"Alto volumen",type:"warm"}],
+    dims:[{label:"Estructura",value:"Alta",cls:"high"},{label:"Ecosistema",value:"Muy alto",cls:"high"},{label:"Velocidad",value:"Alta",cls:"high"}]
   },
   {
-    name: "El Hospital Explorador",
-    tagline: '"Innovamos por proyectos, cuando surge la oportunidad"',
-    desc: "Tienes talento clínico con inquietud innovadora y capacidad de respuesta ágil ante oportunidades concretas. La innovación existe, pero depende de personas clave y financiación externa. El reto es transformar esa energía en capacidad institucional sostenible.",
-    tags: [{label:"Clínico emprendedor",type:"green"},{label:"Agilidad táctica",type:"blue"},{label:"Proyectos ad hoc",type:"yellow"},{label:"Sin estructura formal",type:"yellow"}],
-    dims: [{label:"Estructura",value:"Baja",cls:"low"},{label:"Ecosistema",value:"Puntual",cls:"mid"},{label:"Velocidad",value:"Variable",cls:"mid"}],
-    steps: ["Crea una figura de coordinación de innovación, aunque sea a tiempo parcial, para generar memoria institucional.","Diseña un mapa de iniciativas activas y pasadas para identificar patrones y fortalezas propias.","Solicita fondos europeos (Horizon, FEDER) que justifiquen estructurar la función de innovación."]
+    name:"El Hospital Explorador", tagline:'"Innovamos por proyectos, cuando surge la oportunidad"',
+    desc:"Tienes talento clínico con inquietud innovadora y capacidad de respuesta ágil ante oportunidades concretas. La innovación existe, pero depende de personas clave y financiación externa. El reto es transformar esa energía en capacidad institucional sostenible.",
+    tags:[{label:"Clínico emprendedor",type:"orange"},{label:"Agilidad táctica",type:"red"},{label:"Proyectos ad hoc",type:"warm"},{label:"Sin estructura formal",type:"warm"}],
+    dims:[{label:"Estructura",value:"Baja",cls:"low"},{label:"Ecosistema",value:"Puntual",cls:"mid"},{label:"Velocidad",value:"Variable",cls:"mid"}]
   },
   {
-    name: "El Hospital Plataforma",
-    tagline: '"La innovación es el modelo de negocio"',
-    desc: "En tu hospital la innovación y la operación son la misma cosa. Tu arquitectura digital abierta te permite incorporar soluciones de terceros con mínima fricción. Eres un entorno de experimentación continua y un referente en salud digital.",
-    tags: [{label:"Digital-first",type:"green"},{label:"Interoperabilidad",type:"green"},{label:"Innovación continua",type:"blue"},{label:"Alianzas tecnológicas",type:"blue"}],
-    dims: [{label:"Estructura",value:"Integrada",cls:"high"},{label:"Ecosistema",value:"Sistémica",cls:"high"},{label:"Velocidad",value:"Muy alta",cls:"high"}],
-    steps: ["Asegura que la madurez clínica y regulatoria crece al mismo ritmo que la velocidad tecnológica.","Desarrolla un modelo de gobernanza de datos que aumente la confianza de pacientes y reguladores.","Exporta tu modelo y arquitectura a otros hospitales: convierte tu capacidad interna en producto externo."]
+    name:"El Hospital Plataforma", tagline:'"La innovación es el modelo de negocio"',
+    desc:"En tu hospital la innovación y la operación son la misma cosa. Tu arquitectura digital abierta te permite incorporar soluciones de terceros con mínima fricción. Eres un entorno de experimentación continua y un referente en salud digital.",
+    tags:[{label:"Digital-first",type:"orange"},{label:"Interoperabilidad",type:"orange"},{label:"Innovación continua",type:"red"},{label:"Alianzas tecnológicas",type:"red"}],
+    dims:[{label:"Estructura",value:"Integrada",cls:"high"},{label:"Ecosistema",value:"Sistémico",cls:"high"},{label:"Velocidad",value:"Muy alta",cls:"high"}]
   },
   {
-    name: "El Hospital Durmiente",
-    tagline: '"La innovación no está en nuestra agenda real"',
-    desc: "La innovación es aún reactiva en tu organización: llega por presión normativa o por imitación. No es un juicio negativo — es el punto de partida más frecuente. Y precisamente por eso, el potencial de transformación es enorme con los pasos adecuados.",
-    tags: [{label:"Adopción tardía",type:"yellow"},{label:"Sin estructura propia",type:"yellow"},{label:"Alto potencial de mejora",type:"blue"}],
-    dims: [{label:"Estructura",value:"Baja",cls:"low"},{label:"Ecosistema",value:"Baja",cls:"low"},{label:"Velocidad",value:"Baja",cls:"low"}],
-    steps: ["Identifica un clínico o directivo con vocación innovadora: el catalizador siempre es una persona.","Empieza con un piloto pequeño y visible para generar un caso de éxito interno que cambie la narrativa.","Conecta con una red hospitalaria de innovación (SEIS, AQuAS, HIMSS) para aprender del camino de otros."]
+    name:"El Hospital Reactivo", tagline:'"La innovación responde más que lidera"',
+    desc:"La innovación en tu organización es principalmente reactiva: llega impulsada por requerimientos normativos o por la adopción de iniciativas probadas en otros centros. No se trata de una falta de capacidad, sino de un enfoque comprensible en entornos altamente regulados. El potencial de transformación es enorme con los pasos adecuados.",
+    tags:[{label:"Adopción tardía",type:"warm"},{label:"Sin estructura propia",type:"warm"},{label:"Alto potencial",type:"red"}],
+    dims:[{label:"Estructura",value:"Baja",cls:"low"},{label:"Ecosistema",value:"Bajo",cls:"low"},{label:"Velocidad",value:"Baja",cls:"low"}]
   }
 ];
 
-let currentQ = 0;
-let answers = Array(QUESTIONS.length).fill(null);
-let userData = {};
+// ─── QUESTION DEFINITIONS ─────────────────────────────────────────────────
+const QUESTIONS = [
+  // ── BLOQUE 1: ESTRUCTURA ──────────────────────────────────────────────────
+  {
+    id:'p1', label:'Pregunta 1', type:'single',
+    text:'¿Cómo está estructurada la función de innovación en tu hospital?',
+    options:[
+      {text:'Tenemos una Dirección de Innovación con equipo dedicado y mandato institucional explícito.', scores:[4,2,0,1,0]},
+      {text:'La innovación recae en clínicos o equipos motivados, sin estructura ni mandato formal.', scores:[0,0,4,0,1]},
+      {text:'Existe un área de coordinación transversal que articula proyectos internos y relaciones con el ecosistema, sin ser una dirección propia.', scores:[1,4,0,2,0]},
+      {text:'No existe una función de innovación definida como tal.', scores:[0,0,0,0,5]},
+    ]
+  },
+  {
+    id:'p1bc', label:'Pregunta 1b', type:'double',
+    showIf: a => a.p1 !== undefined && a.p1 !== 3,
+    questions: [
+      {
+        id:'p1b',
+        text:'¿A quién reporta la función de innovación?',
+        options:[
+          {text:'A Gerencia / Dirección General', scores:[2,2,1,2,0]},
+          {text:'A una Dirección asistencial o médica', scores:[2,0,2,1,0]},
+          {text:'A una Dirección de Operaciones o Sistemas', scores:[1,1,0,3,0]},
+          {text:'No reporta formalmente a ninguna dirección', scores:[0,0,2,0,2]},
+        ]
+      },
+      {
+        id:'p1c',
+        text:'¿Existe un comité o espacio de gobernanza de innovación?',
+        options:[
+          {text:'Sí, con reuniones periódicas y participación de dirección.', scores:[3,3,0,2,0]},
+          {text:'Sí, pero se reúne de forma irregular.', scores:[1,1,2,1,0]},
+          {text:'No existe formalmente.', scores:[0,0,2,0,3]},
+        ]
+      }
+    ]
+  },
+  {
+    id:'p1d', label:'Pregunta 1c', type:'multi',
+    showIf: a => a.p1 !== undefined && a.p1 !== 3,
+    text:'¿Qué perfiles forman parte del equipo o función de innovación?',
+    sub:'Selecciona todos los que apliquen.',
+    items:[
+      {text:'Innovation Manager / Responsable de Innovación', scores:[3,2,0,1,0]},
+      {text:'Data Scientist / Analista de datos', scores:[1,1,0,4,0]},
+      {text:'Project Manager', scores:[3,2,1,2,0]},
+      {text:'Ingeniero de procesos / Lean', scores:[2,1,0,3,0]},
+      {text:'Perfiles clínicos con dedicación parcial', scores:[2,1,3,1,0]},
+      {text:'No hay perfiles específicos asignados', scores:[0,0,2,0,3]},
+    ]
+  },
+  // ── BLOQUE 2: CULTURA ────────────────────────────────────────────────────
+  {
+    id:'p2', label:'Pregunta 2', type:'single',
+    text:'¿Qué acciones tiene el hospital para difundir la cultura de innovación internamente?',
+    options:[
+          {text:'No hay iniciativas específicas para fomentar una cultura innovadora.', scores:[0,0,0,0,4]},
+          {text:'Acciones puntuales: alguna jornada o formación esporádica.', scores:[1,0,2,0,2]},
+          {text:'Programa estructurado de formación e ideación para todos los niveles.', scores:[3,2,1,2,0]},
+          {text:'La cultura innovadora es parte explícita de la identidad y onboarding del hospital.', scores:[2,4,0,3,0]},
+    ]
+  },
+  // ── BLOQUE 3: ORIGEN Y ECOSISTEMA ────────────────────────────────────────
+  {
+    id:'p3', label:'Pregunta 3', type:'single',
+    text:'¿Cómo se originan habitualmente las iniciativas innovadoras en tu hospital?',
+    options:[
+      {text:'Principalmente desde dentro: los profesionales detectan necesidades y las desarrollamos internamente.', scores:[4,1,1,1,0]},
+      {text:'Principalmente desde fuera: startups y empresas nos proponen soluciones que evaluamos y pilotamos.', scores:[0,3,0,2,1]},
+      {text:'Por proyectos puntuales ligados a convocatorias, congresos o colaboraciones coyunturales.', scores:[0,1,4,0,1]},
+      {text:'De forma mixta: impulsamos innovación desde dentro y captamos desde fuera de forma simultánea.', scores:[2,3,1,2,0]},
+      {text:'La innovación llega principalmente por presión regulatoria o imitación de otros centros.', scores:[0,0,0,0,5]},
+    ]
+  },
+  {
+    id:'p4', label:'Pregunta 4', type:'single',
+    text:'¿Cuál es vuestra relación con el ecosistema de innovación en salud (startups, universidades, fondos…)?',
+    options:[
+      {text:'Proactiva y sistemática: co-creamos, pilotamos y escalamos con actores externos de forma continua.', scores:[0,4,0,3,0]},
+      {text:'Selectiva: colaboramos puntualmente con externos en proyectos que lideramos o controlamos internamente.', scores:[3,2,1,1,0]},
+      {text:'Reactiva o casi inexistente: participamos cuando nos lo proponen o no tenemos relación establecida.', scores:[0,0,1,0,4]},
+    ]
+  },
+  {
+    id:'p4b', label:'Pregunta 4b', type:'multi',
+    showIf: a => a.p4 !== undefined && a.p4 !== 2,
+    text:'¿Qué fórmulas de colaboración utilizáis con el ecosistema externo?',
+    sub:'Selecciona todas las que apliquen.',
+    items:[
+      {text:'Acuerdos marco con empresas o universidades', scores:[2,2,1,1,0]},
+      {text:'Living labs / entornos de prueba integrados', scores:[1,3,0,3,0]},
+      {text:'Participación en redes (EIT Health, ITEMAS, otras)', scores:[1,4,1,1,0]},
+      {text:'Hubs o espacios de co-creación físicos', scores:[1,3,0,2,0]},
+      {text:'Co-inversión / compartir riesgo y retorno', scores:[0,4,0,2,0]},
+    ]
+  },
+  // ── BLOQUE 4: APRENDIZAJE Y ESCALADO ─────────────────────────────────────
+  {
+    id:'p5', label:'Pregunta 5', type:'double',
+    questions: [
+      {
+        id:'p5',
+        text:'Cuando una iniciativa innovadora no funciona como se esperaba, ¿qué ocurre en tu organización?',
+        options:[
+          {text:'Se analiza en detalle y se aprende, pero generamos fricción interna al asumir el fracaso.', scores:[3,1,0,0,1]},
+          {text:'Es parte del proceso: fallamos rápido, aprendemos y pivotamos sin drama.', scores:[1,3,1,3,0]},
+          {text:'Suele abandonarse discretamente; hay poca cultura de documentar o aprender del fracaso.', scores:[0,0,3,0,2]},
+          {text:'Prácticamente no experimentamos, así que rara vez afrontamos este escenario.', scores:[0,0,0,0,4]},
+        ]
+      },
+      {
+        id:'p5b',
+        text:'Y cuando una iniciativa funciona, ¿qué ocurre habitualmente con el piloto?',
+        options:[
+          {text:'Suele quedarse como piloto; escalar es muy difícil en nuestra organización.', scores:[0,0,1,0,3]},
+          {text:'Depende del empuje personal del responsable del proyecto.', scores:[1,0,3,0,1]},
+          {text:'Existe un proceso de evaluación para decidir si se escala institucionalmente.', scores:[3,2,0,2,0]},
+          {text:'Se escala sistemáticamente y se replica en otros servicios o centros.', scores:[1,4,0,3,0]},
+        ]
+      }
+    ]
+  },
+  // ── BLOQUE 5: ESTRATEGIA ──────────────────────────────────────────────────
+  {
+    id:'p6', label:'Pregunta 6', type:'single',
+    text:'¿Cuál es el principal motor de la innovación en tu hospital?',
+    options:[
+      {text:'Mejorar la experiencia y los resultados del paciente como eje central.', scores:[2,2,1,0,0]},
+      {text:'Empoderar al profesional clínico: innovar para que trabaje mejor, con más autonomía y menos fricción.', scores:[3,0,2,1,0]},
+      {text:'Optimizar la operativa y la eficiencia del hospital como organización.', scores:[2,0,0,4,0]},
+      {text:'Innovar forma parte de nuestra identidad institucional: lo hacemos porque es parte de lo que somos.', scores:[1,4,0,1,0]},
+    ]
+  },
+  {
+    id:'p7', label:'Pregunta 7', type:'single',
+    text:'¿Qué peso tiene la innovación en la estrategia global del hospital hoy en día?',
+    sub:'Valora la situación actual, no la aspiración.',
+    options:[
+      {text:'Marginal: iniciativas aisladas sin respaldo estratégico explícito.', scores:[0,0,1,0,4]},
+      {text:'Línea secundaria: con cierto reconocimiento pero sin prioridad real.', scores:[1,0,2,1,1]},
+      {text:'Prioridad estratégica definida: con objetivos y recursos asignados.', scores:[3,2,1,3,0]},
+      {text:'Elemento central: la innovación define el posicionamiento del hospital.', scores:[2,4,0,2,0]},
+    ]
+  },
+  {
+    id:'p7b', label:'Pregunta 7b', type:'single',
+    text:'¿Y dónde aspira a estar vuestra organización en los próximos 4 años (2030)?',
+    sub:'Valora la aspiración, independientemente de la situación actual.',
+    options:[
+      {text:'Mantener el nivel actual: la innovación no es una prioridad de transformación.', scores:[0,0,1,0,3]},
+      {text:'Ganar relevancia interna: que la innovación tenga mayor reconocimiento institucional.', scores:[2,0,2,1,0]},
+      {text:'Ser referente en innovación: dentro del sistema sanitario nacional.', scores:[3,2,0,1,0]},
+      {text:'Liderar el ecosistema: posicionarnos como nodo central de innovación en salud.', scores:[1,4,0,2,0]},
+    ]
+  },
+  // ── BLOQUE 6: FINANCIACIÓN E IMPACTO ─────────────────────────────────────
+  {
+    id:'p8', label:'Pregunta 8', type:'multi',
+    text:'¿Cómo se financia principalmente la innovación en tu hospital?',
+    sub:'Selecciona todas las fuentes que apliquen.',
+    items:[
+      {text:'Presupuesto centralizado asignado específicamente a innovación.', scores:[4,1,0,2,0]},
+      {text:'Presupuesto descentralizado: cada servicio invierte parte del suyo.', scores:[2,0,2,1,0]},
+      {text:'Convocatorias externas: fondos europeos, nacionales o regionales.', scores:[0,1,4,0,0]},
+      {text:'Co-inversión con empresas, startups o universidades compartiendo riesgo y retorno.', scores:[0,4,1,2,0]},
+      {text:'Sin financiación específica; se improvisa proyecto a proyecto.', scores:[0,0,1,0,4]},
+    ]
+  },
+  {
+    id:'p8b', label:'Pregunta 9', type:'single',
+    text:'¿Cómo medís el impacto de la innovación en vuestro hospital?',
+    options:[
+      {text:'No medimos de forma sistemática.', scores:[0,0,1,0,4]},
+      {text:'Medimos resultados clínicos u operativos de forma puntual.', scores:[2,0,2,1,1]},
+      {text:'Usamos KPIs definidos desde el inicio de cada proyecto.', scores:[3,2,0,3,0]},
+      {text:'Modelo estructurado: VBHC, ROI, escalabilidad e impacto organizativo.', scores:[2,4,0,3,0]},
+    ]
+  },
+  // ── BLOQUE 7: PERFILES Y BARRERAS ────────────────────────────────────────
+  {
+    id:'p9', label:'Pregunta 10', type:'single',
+    text:'¿Qué perfiles lideran o participan activamente en los proyectos de innovación?',
+    options:[
+      {text:'Principalmente perfiles de gestión y tecnología (gerencia, IT, dirección).', scores:[3,0,0,3,0]},
+      {text:'Clínicos inquietos que innovan por iniciativa propia, sin mandato institucional.', scores:[0,0,4,0,1]},
+      {text:'Equipos mixtos clínico-técnicos con roles definidos y metodología compartida.', scores:[3,2,1,2,0]},
+      {text:'Un ecosistema amplio: clínicos, gestores, pacientes, externos y startups co-diseñan juntos.', scores:[0,4,0,3,0]},
+    ]
+  },
+  {
+    id:'p9b', label:'Pregunta 11', type:'multi',
+    text:'¿Cuáles son las principales barreras que frenan la innovación en tu hospital?',
+    sub:'Selecciona las que consideres más relevantes. Será una pregunta informativa, no se utilizará para el cálculo final del arquetipo.',
+    items:[
+      {text:'Falta de financiación o presupuesto específico.', scores:[0,0,0,0,0]},
+      {text:'Cultura organizativa resistente al cambio.', scores:[0,0,0,0,0]},
+      {text:'Marco regulatorio y burocracia institucional.', scores:[0,0,0,0,0]},
+      {text:'Falta de liderazgo o apoyo de la dirección.', scores:[0,0,0,0,0]},
+      {text:'Escasez de talento especializado en innovación.', scores:[0,0,0,0,0]},
+      {text:'Dificultad para escalar los pilotos a la práctica clínica real.', scores:[0,0,0,0,0]},
+      {text:'Desconexión entre la innovación y las necesidades clínicas reales.', scores:[0,0,0,0,0]},
+    ]
+  },
+  // ── BLOQUE 8: RETOS Y REFLEXIÓN ───────────────────────────────────────────
+  {
+    id:'p10', label:'Pregunta 12', type:'retos',
+    text:'¿Cuáles son los principales retos de tu hospital?',
+    sub:'Comparte brevemente los retos más importantes a cada horizonte temporal.'
+  }
+];
 
-function startSurvey() {
-  const nombre = document.getElementById('f-nombre').value.trim();
-  const hospital = document.getElementById('f-hospital').value.trim();
-  if (!nombre || !hospital) { alert('Por favor, indica tu nombre y hospital antes de continuar.'); return; }
-  userData = { nombre, hospital, cargo: document.getElementById('f-cargo').value.trim(), ccaa: document.getElementById('f-ccaa').value };
-  document.getElementById('id-card').style.display = 'none';
-  document.getElementById('main-header').style.display = 'none';
-  currentQ = 0;
-  answers = Array(QUESTIONS.length).fill(null);
-  renderQuestion();
+// ─── STATE ────────────────────────────────────────────────────────────────
+let answers = {};
+let retosData = { corto: '', medio: '', largo: '', reflexion: '' };
+let userData = {};
+let visibleFlow = [];
+let currentFlowIdx = 0;
+
+function buildFlow() {
+  visibleFlow = QUESTIONS
+    .filter(q => !q.showIf || q.showIf(answers))
+    .map(q => q.id);
 }
 
-function renderQuestion() {
-  const q = QUESTIONS[currentQ];
-  const pct = Math.round((currentQ / QUESTIONS.length) * 100);
-  document.getElementById('prog-label').textContent = `Pregunta ${currentQ + 1} de ${QUESTIONS.length}`;
+function getQ(id) { return QUESTIONS.find(q => q.id === id); }
+
+// ─── START ────────────────────────────────────────────────────────────────
+function startSurvey() {
+  const hospital = document.getElementById('f-hospital').value;
+  if (!hospital) { alert('Por favor, selecciona tu hospital antes de continuar.'); return; }
+  userData = { hospital };
+  document.getElementById('id-card').style.display = 'none';
+  document.getElementById('main-header').style.display = 'none';
+  answers = {}; retosData = { corto: '', medio: '', largo: '', reflexion: '' }; currentFlowIdx = 0;
+  buildFlow();
+  renderCurrent();
+}
+
+// ─── PROGRESS ────────────────────────────────────────────────────────────
+function updateProgress() {
+  const total = visibleFlow.length;
+  const pct = Math.round((currentFlowIdx / total) * 100);
+  const qId = visibleFlow[currentFlowIdx];
+  const q = getQ(qId);
+  document.getElementById('prog-label').textContent = q ? q.label : '';
   document.getElementById('prog-pct').textContent = pct + '%';
   document.getElementById('prog-fill').style.width = pct + '%';
-  const letters = ['A','B','C','D'];
-  const isLast = currentQ === QUESTIONS.length - 1;
+}
+
+// ─── RENDER ───────────────────────────────────────────────────────────────
+function renderCurrent() {
+  buildFlow();
+  if (currentFlowIdx >= visibleFlow.length) { submitSurvey(); return; }
+  const qId = visibleFlow[currentFlowIdx];
+  const q = getQ(qId);
+  updateProgress();
+  if (q.type === 'retos')   { renderRetos(q); return; }
+  if (q.type === 'multi')   { renderMulti(q); return; }
+  if (q.type === 'double')  { renderDouble(q); return; }
+  renderSingle(q);
+}
+
+function renderRetos(q) {
+  const isLast = currentFlowIdx === visibleFlow.length - 1;
+  const hasRequired = retosData.corto.trim() || retosData.medio.trim() || retosData.largo.trim();
+
   document.getElementById('q-area').innerHTML = `
     <div class="card">
-      <div class="q-number">Pregunta ${currentQ + 1}</div>
+      <div class="q-number">${q.label}</div>
       <div class="q-text">${q.text}</div>
-      <div class="options">
-        ${q.options.map((o,i) => `
-          <div class="option ${answers[currentQ]===i?'selected':''}" onclick="selectOpt(${i})">
-            <div class="opt-letter">${letters[i]}</div>
-            <div class="opt-text">${o.text}</div>
-          </div>`).join('')}
+      <div class="q-sub">${q.sub}</div>
+
+      <div class="retos-group">
+        <div class="reto-block">
+          <div class="reto-label">
+            <span class="reto-horizon h1">1</span>
+            <span class="reto-horizon-label">Corto plazo</span>
+            <span class="reto-horizon-period">(0–1 año)</span>
+          </div>
+          <textarea
+            class="reto-textarea"
+            id="reto-corto"
+            placeholder="¿Cuál es el reto más urgente al que se enfrenta tu hospital en los próximos meses?"
+            oninput="saveReto('corto')"
+          >${retosData.corto}</textarea>
+        </div>
+
+        <div class="reto-block">
+          <div class="reto-label">
+            <span class="reto-horizon h2">2</span>
+            <span class="reto-horizon-label">Medio plazo</span>
+            <span class="reto-horizon-period">(1–3 años)</span>
+          </div>
+          <textarea
+            class="reto-textarea"
+            id="reto-medio"
+            placeholder="¿Qué transformaciones o cambios estructurales son prioritarios en este horizonte?"
+            oninput="saveReto('medio')"
+          >${retosData.medio}</textarea>
+        </div>
+
+        <div class="reto-block">
+          <div class="reto-label">
+            <span class="reto-horizon h3">3</span>
+            <span class="reto-horizon-label">Largo plazo</span>
+            <span class="reto-horizon-period">(3–5 años)</span>
+          </div>
+          <textarea
+            class="reto-textarea"
+            id="reto-largo"
+            placeholder="¿Cuál es la visión o el gran desafío estratégico al que debe prepararse tu hospital?"
+            oninput="saveReto('largo')"
+          >${retosData.largo}</textarea>
+        </div>
       </div>
+
+      <div class="section-divider"></div>
+
+      <div class="reflexion-block">
+        <div class="reflexion-header">
+          <div>
+            <div class="reflexion-q">¿Quieres compartir una reflexión adicional en torno a tus retos?</div>
+            <div class="reflexion-hint">Escríbela aquí — cualquier pensamiento, matiz o contexto que consideres relevante.</div>
+          </div>
+          <span class="reflexion-optional-badge">Opcional</span>
+        </div>
+        <textarea
+          class="reflexion-textarea"
+          id="reto-reflexion"
+          placeholder="Comparte aquí cualquier reflexión que no hayas podido expresar en las preguntas anteriores…"
+          oninput="saveReto('reflexion')"
+        >${retosData.reflexion}</textarea>
+      </div>
+
       <div class="btn-row">
         <button class="btn btn-ghost" onclick="prevQ()">← Atrás</button>
-        <button class="btn btn-primary" id="btn-next" onclick="nextQ()" ${answers[currentQ]===null?'disabled':''}>
+        <button class="btn btn-primary" id="btn-retos-next" onclick="nextQ()" ${hasRequired ? '' : 'disabled'}>
           ${isLast ? 'Ver mi arquetipo →' : 'Siguiente →'}
         </button>
       </div>
     </div>`;
 }
 
-function selectOpt(i) {
-  answers[currentQ] = i;
-  document.querySelectorAll('.option').forEach((el,idx) => el.classList.toggle('selected', idx===i));
-  document.getElementById('btn-next').disabled = false;
+function saveReto(field) {
+  retosData[field] = document.getElementById('reto-' + field).value;
+  const hasRequired = retosData.corto.trim() || retosData.medio.trim() || retosData.largo.trim();
+  const btn = document.getElementById('btn-retos-next');
+  if (btn) btn.disabled = !hasRequired;
+}
+
+function renderDouble(q) {
+  const letters = ['A','B','C','D','E'];
+  const isLast = currentFlowIdx === visibleFlow.length - 1;
+  const allAnswered = q.questions.every(sq => answers[sq.id] !== undefined);
+
+  document.getElementById('q-area').innerHTML = `
+    <div class="card">
+      <div class="q-number">${q.label}</div>
+      ${q.questions.map((sq, qi) => {
+        const cur = answers[sq.id];
+        return `
+        <div style="margin-bottom:${qi < q.questions.length-1 ? '28px' : '0'}">
+          <div class="q-text" style="font-size:clamp(15px,2.5vw,19px);margin-bottom:16px;">${sq.text}</div>
+          <div class="options">
+            ${sq.options.map((o,i) => `
+              <div class="option ${cur===i?'selected':''}" onclick="selectDouble('${q.id}','${sq.id}',${i})">
+                <div class="opt-letter">${letters[i]}</div>
+                <div class="opt-text">${o.text}</div>
+              </div>`).join('')}
+          </div>
+        </div>
+        ${qi < q.questions.length-1 ? '<div style="height:1px;background:var(--border);margin:24px 0"></div>' : ''}`;
+      }).join('')}
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="prevQ()">← Atrás</button>
+        <button class="btn btn-primary" id="btn-next" onclick="nextQ()" ${allAnswered?'':'disabled'}>
+          ${isLast ? 'Ver mi arquetipo →' : 'Siguiente →'}
+        </button>
+      </div>
+    </div>`;
+}
+
+function selectDouble(groupId, subId, i) {
+  answers[subId] = i;
+  renderDouble(getQ(groupId));
+}
+
+function renderSingle(q) {
+  const letters = ['A','B','C','D','E'];
+  const cur = answers[q.id];
+  const isLast = currentFlowIdx === visibleFlow.length - 1;
+  document.getElementById('q-area').innerHTML = `
+    <div class="card">
+      <div class="q-number">${q.label}</div>
+      <div class="q-text">${q.text}</div>
+      ${q.sub ? `<div class="q-sub">${q.sub}</div>` : ''}
+      <div class="options">
+        ${q.options.map((o,i) => `
+          <div class="option ${cur===i?'selected':''}" onclick="selectSingle('${q.id}',${i})">
+            <div class="opt-letter">${letters[i]}</div>
+            <div class="opt-text">${o.text}</div>
+          </div>`).join('')}
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="prevQ()">← Atrás</button>
+        <button class="btn btn-primary" id="btn-next" onclick="nextQ()" ${cur===undefined?'disabled':''}>
+          ${isLast ? 'Ver mi arquetipo →' : 'Siguiente →'}
+        </button>
+      </div>
+    </div>`;
+}
+
+function renderMulti(q) {
+  const cur = answers[q.id] || [];
+  const isLast = currentFlowIdx === visibleFlow.length - 1;
+  document.getElementById('q-area').innerHTML = `
+    <div class="card">
+      <div class="q-number">${q.label}</div>
+      <div class="q-text">${q.text}</div>
+      ${q.sub ? `<div class="q-sub">${q.sub}</div>` : ''}
+      <div class="multi-options">
+        ${q.items.map((item,i) => `
+          <div class="multi-option ${cur.includes(i)?'selected':''}" onclick="toggleMulti('${q.id}',${i})">
+            <div class="opt-check"><div class="opt-check-inner">✓</div></div>
+            <div class="opt-text">${item.text}</div>
+          </div>`).join('')}
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="prevQ()">← Atrás</button>
+        <button class="btn btn-primary" id="btn-next" onclick="nextQ()" ${cur.length===0?'disabled':''}>
+          ${isLast ? 'Ver mi arquetipo →' : 'Siguiente →'}
+        </button>
+      </div>
+    </div>`;
+}
+
+// ─── INTERACTION ──────────────────────────────────────────────────────────
+function selectSingle(qId, i) {
+  answers[qId] = i;
+  buildFlow();
+  renderCurrent();
+}
+
+function toggleMulti(qId, i) {
+  if (!answers[qId]) answers[qId] = [];
+  const idx = answers[qId].indexOf(i);
+  if (idx >= 0) answers[qId].splice(idx, 1);
+  else answers[qId].push(i);
+  renderCurrent();
 }
 
 function nextQ() {
-  if (answers[currentQ] === null) return;
-  if (currentQ < QUESTIONS.length - 1) { currentQ++; renderQuestion(); }
-  else submitSurvey();
+  currentFlowIdx++;
+  buildFlow();
+  renderCurrent();
 }
 
 function prevQ() {
-  if (currentQ === 0) {
+  if (currentFlowIdx === 0) {
     document.getElementById('id-card').style.display = 'block';
     document.getElementById('main-header').style.display = 'block';
     document.getElementById('q-area').innerHTML = '';
     document.getElementById('prog-label').textContent = 'Identificación';
     document.getElementById('prog-pct').textContent = '0%';
     document.getElementById('prog-fill').style.width = '0%';
-  } else { currentQ--; renderQuestion(); }
-}
-
-function computeScores() {
-  const t = [0,0,0,0,0];
-  for (let i = 0; i < QUESTIONS.length; i++) {
-    if (answers[i] !== null) QUESTIONS[i].options[answers[i]].scores.forEach((v,j) => t[j] += v);
+  } else {
+    currentFlowIdx--;
+    buildFlow();
+    renderCurrent();
   }
-  return t;
 }
 
+// ─── SCORING ──────────────────────────────────────────────────────────────
+function computeScores() {
+  const totals = [0,0,0,0,0];
+  QUESTIONS.forEach(q => {
+    if (q.type === 'retos') return;
+    if (q.showIf && !q.showIf(answers)) return;
+    if (q.type === 'single') {
+      const sel = answers[q.id];
+      if (sel !== undefined) q.options[sel].scores.forEach((v,j) => totals[j] += v);
+    } else if (q.type === 'double') {
+      q.questions.forEach(sq => {
+        const sel = answers[sq.id];
+        if (sel !== undefined) sq.options[sel].scores.forEach((v,j) => totals[j] += v);
+      });
+    } else if (q.type === 'multi') {
+      const sel = answers[q.id] || [];
+      if (sel.length === 0) return;
+      const raw = [0,0,0,0,0];
+      sel.forEach(i => q.items[i].scores.forEach((v,j) => raw[j] += v));
+      const factor = 1 / sel.length;
+      raw.forEach((v,j) => totals[j] += v * factor);
+    }
+  });
+  return totals;
+}
+
+// ─── SUBMIT ───────────────────────────────────────────────────────────────
 function submitSurvey() {
   const scores = computeScores();
-  const maxIdx = scores.indexOf(Math.max(...scores));
+  const maxVal = Math.max(...scores);
+  const maxIdx = scores.indexOf(maxVal);
+  const sorted = scores.map((v,i) => ({v,i})).sort((a,b) => b.v - a.v);
+  const secondaryIdx = sorted[1] && sorted[1].v > 0 && sorted[1].i !== maxIdx ? sorted[1].i : null;
   const arch = ARCHETYPES[maxIdx];
+  const secondaryArch = secondaryIdx !== null ? ARCHETYPES[secondaryIdx] : null;
   const fecha = new Date().toLocaleString('es-ES');
+
+  const payload = {
+    fecha, hospital: userData.hospital,
+    archetype: arch.name,
+    archetype2: secondaryArch ? secondaryArch.name : '-',
+    p1:   answers.p1  !== undefined ? ['A','B','C','D'][answers.p1]  : '-',
+    p1b:  answers.p1b !== undefined ? ['A','B','C','D'][answers.p1b] : '-',
+    p1c:  answers.p1c !== undefined ? ['A','B','C'][answers.p1c]     : '-',
+    p1d:  answers.p1d ? answers.p1d.map(i=>'ABCDEF'[i]).join('+')   : '-',
+    p2:   answers.p2  !== undefined ? ['A','B','C','D'][answers.p2]  : '-',
+    p3:   answers.p3  !== undefined ? ['A','B','C','D','E'][answers.p3] : '-',
+    p4:   answers.p4  !== undefined ? ['A','B','C'][answers.p4]      : '-',
+    p4b:  answers.p4b ? answers.p4b.map(i=>'ABCDE'[i]).join('+')    : '-',
+    p5:   answers.p5  !== undefined ? ['A','B','C','D'][answers.p5]  : '-',
+    p5b:  answers.p5b !== undefined ? ['A','B','C','D'][answers.p5b] : '-',
+    p6:   answers.p6  !== undefined ? ['A','B','C','D'][answers.p6]  : '-',
+    p7:   answers.p7  !== undefined ? ['A','B','C','D'][answers.p7]  : '-',
+    p7b:  answers.p7b !== undefined ? ['A','B','C','D'][answers.p7b] : '-',
+    p8:   answers.p8  ? answers.p8.map(i=>'ABCDE'[i]).join('+')     : '-',
+    p8b:  answers.p8b !== undefined ? ['A','B','C','D'][answers.p8b] : '-',
+    p9:   answers.p9  !== undefined ? ['A','B','C','D'][answers.p9]  : '-',
+    p9b:  answers.p9b ? answers.p9b.map(i=>'ABCDEFG'[i]).join('+')  : '-',
+    reto_corto:    retosData.corto    || '-',
+    reto_medio:    retosData.medio    || '-',
+    reto_largo:    retosData.largo    || '-',
+    reflexion:     retosData.reflexion || '-'
+  };
+
   fetch('https://script.google.com/macros/s/AKfycbwEf7GzHOu-42IUVvZcFw0mtFM6JLszeGlW9rVlJsM2VJOuLxBAYE5dBKm4RznY0V7jHg/exec', {
-    method: 'POST', mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      fecha, nombre: userData.nombre, hospital: userData.hospital,
-      cargo: userData.cargo, ccaa: userData.ccaa, archetype: arch.name,
-      q1: answers[0]!==null ? String.fromCharCode(65+answers[0]) : '-',
-      q2: answers[1]!==null ? String.fromCharCode(65+answers[1]) : '-',
-      q3: answers[2]!==null ? String.fromCharCode(65+answers[2]) : '-',
-      q4: answers[3]!==null ? String.fromCharCode(65+answers[3]) : '-',
-      q5: answers[4]!==null ? String.fromCharCode(65+answers[4]) : '-',
-    })
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(payload)
   }).catch(()=>{});
-  showResult(arch);
+
+  showResult(arch, scores, secondaryArch);
 }
 
-function showResult(arch) {
+// ─── RESULT ───────────────────────────────────────────────────────────────
+function showResult(arch, scores, secondaryArch) {
   document.getElementById('survey-screen').style.display = 'none';
   document.getElementById('progress-wrap').style.display = 'none';
   document.getElementById('result-screen').style.display = 'block';
   document.getElementById('res-title').textContent = arch.name;
   document.getElementById('res-subtitle').textContent = arch.tagline;
   document.getElementById('res-desc').textContent = arch.desc;
-  document.getElementById('res-pills').innerHTML = arch.tags.map(t=>`<span class="pill ${t.type}">${t.label}</span>`).join('');
-  document.getElementById('res-dims').innerHTML = arch.dims.map(d=>`<div class="dim-box"><div class="dim-label">${d.label}</div><div class="dim-val ${d.cls}">${d.value}</div></div>`).join('');
-  document.getElementById('res-steps').innerHTML = arch.steps.map(s=>`<li>${s}</li>`).join('');
+
+  const pillsHTML = arch.tags.map(t=>`<span class="pill ${t.type}">${t.label}</span>`).join('');
+  document.getElementById('res-pills').innerHTML = pillsHTML;
+
+  document.getElementById('res-dims').innerHTML = arch.dims.map(d=>
+    `<div class="dim-box"><div class="dim-label">${d.label}</div><div class="dim-val ${d.cls}">${d.value}</div></div>`
+  ).join('');
+
+  const hoy = answers.p7;
+  const futuro = answers.p7b;
+  const gapLabels = ['Marginal','Línea secundaria','Prioridad estratégica','Elemento central'];
+  const aspiraLabels = ['Mantener nivel actual','Ganar relevancia interna','Ser referente nacional','Liderar el ecosistema'];
+  if (hoy !== undefined && futuro !== undefined) {
+    const gap = futuro - hoy;
+    document.getElementById('res-gap').style.display = 'block';
+    document.getElementById('gap-hoy').textContent = gapLabels[hoy];
+    document.getElementById('gap-futuro').textContent = aspiraLabels[futuro];
+    document.getElementById('gap-desc').textContent = gap <= 0
+      ? 'Vuestro punto de partida y vuestra aspiración están alineados. El reto es consolidar y no perder terreno.'
+      : gap === 1
+      ? 'Un salto realista. Con los recursos y el mandato adecuados, alcanzable en el horizonte definido.'
+      : 'Una transformación ambiciosa. Requerirá cambios estructurales, culturales y de liderazgo significativos.';
+  }
+
+  if (secondaryArch) {
+    document.getElementById('res-secondary').style.display = 'block';
+    document.getElementById('res-secondary-name').textContent = secondaryArch.name;
+    document.getElementById('res-secondary-desc').textContent = secondaryArch.tagline.replace(/"/g,'');
+  }
 }
 
+// ─── RESET ────────────────────────────────────────────────────────────────
 function resetSurvey() {
-  currentQ = 0; answers = Array(QUESTIONS.length).fill(null); userData = {};
+  answers = {}; retosData = { corto:'', medio:'', largo:'', reflexion:'' };
+  userData = {}; currentFlowIdx = 0; visibleFlow = [];
   document.getElementById('result-screen').style.display = 'none';
   document.getElementById('survey-screen').style.display = 'block';
   document.getElementById('progress-wrap').style.display = 'block';
   document.getElementById('main-header').style.display = 'block';
   document.getElementById('id-card').style.display = 'block';
   document.getElementById('q-area').innerHTML = '';
-  document.getElementById('f-nombre').value = '';
   document.getElementById('f-hospital').value = '';
-  document.getElementById('f-cargo').value = '';
-  document.getElementById('f-ccaa').value = '';
   document.getElementById('prog-label').textContent = 'Identificación';
   document.getElementById('prog-pct').textContent = '0%';
   document.getElementById('prog-fill').style.width = '0%';
